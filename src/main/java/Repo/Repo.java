@@ -3,6 +3,7 @@ package Repo;
 public class Repo {
     public Repo() {
     }
+
     //Read
 
     //read all item from the table
@@ -13,7 +14,9 @@ public class Repo {
 
     //insert one item to table
     //insert multiple items to table
-    //update//
+
+    //update
+
     //update one property for item by an id
     //update entire item//
 

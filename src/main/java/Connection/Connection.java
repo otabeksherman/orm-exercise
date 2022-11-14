@@ -1,23 +1,29 @@
 package Connection;
 
+import Client.User;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Connection<T> {
     private Class<T> clz;
 
     public Connection(Class<T> clz) {
         this.clz = clz;
-    }
+    }//connection for a table
 
     public static List<User> ConnectionToSQL() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "root", "root");
 
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sql_ex", "root", "1234");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from user");
+
+
+            ResultSet rs = stmt.executeQuery("select * from users");
             List<User> results = new ArrayList<>();
             while (rs.next()) {
                 User user = new User();
@@ -25,8 +31,10 @@ public class Connection<T> {
                 user.setEmail(rs.getString("email"));
                 user.setName(rs.getString("name"));
                 user.setPassword(rs.getString("password"));
+                user.setMoney_balance(rs.getInt("money_balance"));
 
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) +
+                        "  " + rs.getInt(5));
                 results.add(user);
             }
             con.close();
@@ -34,7 +42,57 @@ public class Connection<T> {
         } catch (Exception e) {
             System.out.println(e);
         }
+        return null;
     }
+
+    public static void insertUser() {
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sql_ex", "root", "1234");
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO Users " + "VALUES (4, 'haitham@gmail.com','Haitham', 'haitham1234', 4000 )");
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public static void deleteUser() {
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sql_ex", "root", "1234");
+            Statement stmt = con.createStatement();
+            String query = "delete from  Users " +
+                    "where id = 4";
+            stmt.executeUpdate(query);
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public static void updateUser() {
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sql_ex", "root", "1234");
+            Statement stmt = con.createStatement();
+            String query = "update Users set Name ='Mohammad' " + "where id = 1";
+            stmt.executeUpdate(query);
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
 
     public static <T> List<T> ConnectionToSQLGen(Class<T> clz) {
         try {
@@ -60,7 +118,6 @@ public class Connection<T> {
         } catch (Exception e) {
             System.out.println(e);
         }
+        return null;
     }
-
-
 }
