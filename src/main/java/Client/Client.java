@@ -10,7 +10,7 @@ public class Client {
 //        Connection.deleteUser();
 //        Connection.updateUser();
 
-        List<User> users = Connection.ConnectionToSQL();
+//        List<User> users = Connection.ConnectionToSQL();
 //        users.forEach(user -> System.out.println(users.toString()));
 //        List<User> users = Connection.ConnectionToSQLGen(User.class);
 

@@ -1,4 +1,5 @@
-package Connection;
+package Repo;
+
 
 import Client.User;
 
@@ -8,10 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Connection<T> {
+public class Repository<T> {
     private Class<T> clz;
 
-    public Connection(Class<T> clz) {
+    public Repository(Class<T> clz) {
         this.clz = clz;
     }//connection for a table
 
@@ -121,3 +122,32 @@ public class Connection<T> {
         return null;
     }
 }
+
+    //Read
+
+    //read all item from the table
+    //get one item by id
+    //Get item(s) by any property
+
+    //Add
+
+    //insert one item to table
+    //insert multiple items to table
+
+    //update
+
+    //update one property for item by an id
+    //update entire item//
+
+    //Delete
+
+    //delete Single item deletion by any property (delete user with email x)
+    //delete Multiple item deletion by any property (delete all users called x)
+    //Delete entire table (truncate)
+
+
+    //Table Creation
+
+    //the rest
+
+
