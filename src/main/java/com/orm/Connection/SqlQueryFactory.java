@@ -157,7 +157,7 @@ public class SqlQueryFactory {
     // TODO Delete entire table (truncate)
     public static <T> String createDeleteTableQuery(Class<T> clz) {
         String tableName = clz.getSimpleName().toLowerCase();
-        String query = "DROP TABLE " + tableName;
+        String query = "DROP TABLE IF EXISTS " + tableName;
         return query;
     }
 
